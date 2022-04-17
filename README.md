@@ -6,7 +6,7 @@ Empaquetado en la carpeta charts genet
 	Successfully packaged chart and saved it to: webapp-db-java\charts\webapp-db-java-0.1.0.tgz
 
 
-Generar ficjero index.yaml en la carpeta charts
+Generar fichero index.yaml en la carpeta charts
 
 	> helm repo index .\webapp-db-java\charts\ 
 
