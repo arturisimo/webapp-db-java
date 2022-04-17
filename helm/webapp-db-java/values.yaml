@@ -31,6 +31,7 @@ tolerations: []
 
 affinity: {}
 
+mysql_root_username: root
 mysql_root_password: pass
-mysql_database: anuncios
+mysql_database: jdbc:mysql://db/anuncios
 mysql_host: db

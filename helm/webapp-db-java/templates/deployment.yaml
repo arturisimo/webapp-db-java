@@ -24,9 +24,11 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: SPRING_DATASOURCE_USERNAME
+          value: {{ .Values.mysql_root_username }}
+        - name: SPRING_DATASOURCE_PASSWORD
           value: {{ .Values.mysql_root_password }}
-        - name: MYSQL_DATABASE
+        - name: SPRING_DATASOURCE_URL
           value: {{ .Values.mysql_database }}
         - name: DATABASE_HOST
           value: {{ .Values.mysql_host }}
