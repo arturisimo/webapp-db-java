@@ -33,3 +33,4 @@ affinity: {}
 
 mysql_root_password: pass
 mysql_database: anuncios
+mysql_host: db

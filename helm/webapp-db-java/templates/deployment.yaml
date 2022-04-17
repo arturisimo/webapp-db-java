@@ -28,6 +28,8 @@ spec:
           value: {{ .Values.mysql_root_password }}
         - name: MYSQL_DATABASE
           value: {{ .Values.mysql_database }}
+        - name: DATABASE_HOST
+          value: {{ .Values.mysql_host }}
         ports:
           - name: http
             containerPort: {{ .Values.service.port }}
