@@ -24,17 +24,17 @@ spec:
         image: codeurjc/toposervice:v1.0
         env:
         - name: SPRING_DATA_MONGODB_HOST
-          value: {{ .Values.mongodb_host }}
+          value: mongodb-service
         - name: SPRING_DATA_MONGODB_PORT
-          value: {{ .Values.mongodb_port }}
+          value: "27017"
         - name: SPRING_DATA_MONGODB_DATABASE
-          value: {{ .Values.mongodb_database }}
+          value: topoDB
         - name: SPRING_DATA_MONGODB_AUTHENTICATION-DATABASE
-          value: {{ .Values.mongodb_auth_database }}
+          value: admin
         - name: SPRING_DATA_MONGODB_USERNAME
-          value: {{ .Values.mongodb_username }}
+          value: root
         - name: SPRING_DATA_MONGODB_PASSWORD
-          value: {{ .Values.mongodb_password }}
+          value: password
         ports:
         - containerPort: 8181
 ---

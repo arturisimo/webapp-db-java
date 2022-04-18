@@ -24,18 +24,18 @@ spec:
         image: arturisimo/planner:v1.0
         env:
         - name: TOPO_HOST
-          value: {{ .Values.topo_host }}
+          value: toposervice-service
         - name: TOPO_PORT
-          value: {{ .Values.topo_port }}
+          value: "8181"
         - name: GRPC_CLIENT_WEATHERSERVER_ADDRESS
-          value: {{ .Values.grpc_client_weatherserver_address }}
+          value: static://weatherservice-service:9090
         - name: SPRING_CLOUD_STREAM_RABBIT_BINDER_NODES
-          value: {{ .Values.spring_cloud_stream_rabbit_binder_nodes }}
+          value: rabbitmq-service:5672
         - name: SPRING_RABBITMQ_HOST
-          value: {{ .Values.spring_rabbitmq_host }}
+          value: rabbitmq-service
         - name: SPRING_RABBITMQ_PORT
-          value: {{ .Values.spring_rabbitmq_port }}
+          value: "5672"
         - name: SPRING_RABBITMQ_USERNAME
-          value: {{ .Values.spring_rabbitmq_username }}
+          value: root
         - name: SPRING_RABBITMQ_PASSWORD
-          value: {{ .Values.spring_rabbitmq_password }}
+          value: password
