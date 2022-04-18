@@ -29,6 +29,26 @@ tolerations: []
 affinity: {}
 
 
+mysql:
+  enabled: false
+  container:
+    image: "mysql"
+    tag: "8.0.28"
+
+mongodb:
+  enabled: false
+  container:
+    image: "mongo"
+    tag: "5.0.6-focal"
+
+rabbitmq:
+  enabled: false
+  container:
+    image: "rabbitmq"
+    tag: "3.9-management"
+
+
+
 mysql_root_password: pass
 mysql_database: anuncios
 

@@ -1,0 +1,13 @@
+{{- if .Values.rabbitmq.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rabbit-pvc
+spec:
+  storageClassName: rabbit
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+{{- end }}

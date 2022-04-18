@@ -26,6 +26,7 @@ spec:
         ports:
         - containerPort: 5672
         - containerPort: 15672
+{{- if .Values.rabbitmq.enabled }}
         volumeMounts:
         - mountPath: /var/lib/rabbitmq/mnesia
           name: datarabbit
@@ -33,18 +34,7 @@ spec:
       - name: datarabbit
         persistentVolumeClaim:
           claimName: rabbit-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: rabbit-pvc
-spec:
-  storageClassName: rabbit
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
+{{- end }}          
 ---
 apiVersion: v1
 kind: Service

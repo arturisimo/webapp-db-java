@@ -1,0 +1,13 @@
+{{- if .Values.mysql.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  storageClassName: mysql
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+{{- end }}

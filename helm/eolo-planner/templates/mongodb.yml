@@ -29,25 +29,15 @@ spec:
         - containerPort: 27017
         - containerPort: 27018
         - containerPort: 27019
+{{- if .Values.mongodb.enabled }}     
         volumeMounts:
         - mountPath: /data/db
           name: datadb
       volumes:
       - name: datadb
         persistentVolumeClaim:
-          claimName: mongo-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mongo-pvc
-spec:
-  storageClassName: mongo
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi          
+          claimName: mongo-
+{{- end }}          
 ---
 apiVersion: v1
 kind: Service
