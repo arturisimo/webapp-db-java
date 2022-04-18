@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8.0.28
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{ .Values.mysql_root_password }}
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mysql_database }}
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: datadb
+      volumes:
+      - name: datadb
+        persistentVolumeClaim:
+          claimName: mysql-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  storageClassName: mysql
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    app: mysql
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+    protocol: TCP
+    name: mysql-port
+  selector:
+    app: mysql
+  type: ClusterIP

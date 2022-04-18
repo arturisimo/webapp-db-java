@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deploy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: server
+        dns-policy: enabled
+    spec:
+      securityContext:
+        runAsUser: 1001
+      restartPolicy: Always
+      containers:
+      - name: server
+        image: arturisimo/server-urjc:v1.0
+        command: ["bash"]
+        args:
+        - "-c"
+        - "./wait-for-it.sh mysql-service:3306 -t 500 -- ./wait-for-it.sh rabbitmq-service:5672 -t 500 -- node src/server.js"
+        env:
+        - name: MYSQL_HOST
+          value: {{ .Values.mysql_host }}
+        - name: MYSQL_DB
+          value: {{ .Values.mysql_root_password }}
+        - name: MYSQL_USER
+          value: {{ .Values.mysql_host }}
+        - name: MYSQL_PASS
+          value: {{ .Values.mysql_pass }}
+        - name: RABBITMQ_URL
+          value: {{ .Values.rabbitmq_url }}
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-service
+  labels:
+    app: server
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: server-port
+  selector:
+    app: server
+  type: ClusterIP

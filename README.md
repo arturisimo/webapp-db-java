@@ -23,4 +23,4 @@ Listado de repositorios
 
 Generación de la release
 
-	> helm install anuncios-release webapp-db-java-repo/webapp-db-java --version 0.1.0
+	> helm install anuncios-release webapp-db-java/webapp-db-java --version 0.1.0

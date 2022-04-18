@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: planner-deploy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: planner
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: planner
+        dns-policy: enabled
+    spec:
+      securityContext:
+        runAsUser: 1001
+      restartPolicy: Always
+      containers:
+      - name: planner
+        image: arturisimo/planner:v1.0
+        env:
+        - name: TOPO_HOST
+          value: {{ .Values.topo_host }}
+        - name: TOPO_PORT
+          value: {{ .Values.topo_port }}
+        - name: GRPC_CLIENT_WEATHERSERVER_ADDRESS
+          value: {{ .Values.grpc_client_weatherserver_address }}
+        - name: SPRING_CLOUD_STREAM_RABBIT_BINDER_NODES
+          value: {{ .Values.spring_cloud_stream_rabbit_binder_nodes }}
+        - name: SPRING_RABBITMQ_HOST
+          value: {{ .Values.spring_rabbitmq_host }}
+        - name: SPRING_RABBITMQ_PORT
+          value: {{ .Values.spring_rabbitmq_port }}
+        - name: SPRING_RABBITMQ_USERNAME
+          value: {{ .Values.spring_rabbitmq_username }}
+        - name: SPRING_RABBITMQ_PASSWORD
+          value: {{ .Values.spring_rabbitmq_password }}

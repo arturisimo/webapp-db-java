@@ -1,0 +1,64 @@
+replicaCount: 1
+
+service:
+  type: LoadBalancer
+  targetPort: 3000
+  port: 80
+
+metrics:
+  enabled: false
+
+resources: 
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: eoloserver-svc-arturisimo.cloud.okteto.net
+      paths:
+      - path: /
+        backend:
+          serviceName: server-service
+          servicePort: 3000
+  tls: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+mysql_root_password: pass
+mysql_database: anuncios
+
+mysql_host: mysql-service
+mysql_db: eoloplantsdb
+mysql_user: root
+mysql_pass: password
+rabbitmq_url: amqp://root:password@rabbitmq-service
+
+topo_host: toposervice-service
+topo_port: "8181"
+grpc_client_weatherserver_address: static://weatherservice-service:9090
+spring_cloud_stream_rabbit_binder_nodes: rabbitmq-service:5672
+spring_rabbitmq_host: rabbitmq-service
+spring_rabbitmq_port: "5672"
+spring_rabbitmq_username: root
+spring_rabbitmq_password: password
+
+mongodb_host: mongodb-service
+mongodb_port: "27017"
+mongodb_database: topoDB
+mongodb_auth_database: admin
+mongodb_username: root
+mongodb_password: password
+
