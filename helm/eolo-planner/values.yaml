@@ -27,9 +27,6 @@ rabbitmq:
     image: "rabbitmq"
     tag: "3.9-management"
 
-
-mysql_database: anuncios
-
 mysql_host: mysql-service
 mysql_db: eoloplantsdb
 mysql_user: root

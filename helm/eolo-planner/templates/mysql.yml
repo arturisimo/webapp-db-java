@@ -22,7 +22,7 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: {{ .Values.mysql_password }}
         - name: MYSQL_DATABASE
-          value: {{ .Values.mysql_database }}
+          value: {{ .Values.mysql_db }}
         ports:
         - containerPort: 3306
 {{- if .Values.mysql.enabled }}     
