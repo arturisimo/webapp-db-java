@@ -5,29 +5,9 @@ service:
   targetPort: 3000
   port: 80
 
-metrics:
-  enabled: false
-
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: eoloserver-svc-arturisimo.cloud.okteto.net
-      paths:
-      - path: /
-        backend:
-          serviceName: server-service
-          servicePort: 3000
-  tls: []
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
+  enabled: true
+  host: eoloserver-svc-arturisimo.cloud.okteto.net
 
 mysql:
   enabled: false
@@ -48,14 +28,12 @@ rabbitmq:
     tag: "3.9-management"
 
 
-
-mysql_root_password: pass
 mysql_database: anuncios
 
 mysql_host: mysql-service
 mysql_db: eoloplantsdb
 mysql_user: root
-mysql_pass: password
+mysql_password: password
 rabbitmq_url: amqp://root:password@rabbitmq-service
 
 topo_host: toposervice-service

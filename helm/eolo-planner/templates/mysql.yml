@@ -20,7 +20,7 @@ spec:
         image: mysql:8.0.28
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: {{ .Values.mysql_root_password }}
+          value: {{ .Values.mysql_password }}
         - name: MYSQL_DATABASE
           value: {{ .Values.mysql_database }}
         ports:

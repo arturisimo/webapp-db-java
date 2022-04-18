@@ -30,11 +30,11 @@ spec:
         - name: MYSQL_HOST
           value: {{ .Values.mysql_host }}
         - name: MYSQL_DB
-          value: {{ .Values.mysql_root_password }}
+          value: {{ .Values.mysql_db }}
         - name: MYSQL_USER
-          value: {{ .Values.mysql_host }}
+          value: {{ .Values.mysql_user }}
         - name: MYSQL_PASS
-          value: {{ .Values.mysql_pass }}
+          value: {{ .Values.mysql_password }}
         - name: RABBITMQ_URL
           value: {{ .Values.rabbitmq_url }}
         ports:

@@ -36,7 +36,7 @@ spec:
       volumes:
       - name: datadb
         persistentVolumeClaim:
-          claimName: mongo-
+          claimName: mongo-pvc
 {{- end }}          
 ---
 apiVersion: v1

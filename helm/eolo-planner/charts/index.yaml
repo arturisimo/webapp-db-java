@@ -3,11 +3,11 @@ entries:
   eolo-planner:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2022-04-18T23:40:33.014136+02:00"
+    created: "2022-04-19T00:05:24.5366022+02:00"
     description: Eolo Planner
-    digest: e77596aba3814da946ff033a6609d52c4d29055f930fd29912376bd8f9f2dd45
+    digest: 801b6a9368218801aa38ae2c15bb21360c17a84bae66abece0064e3efa8133f4
     name: eolo-planner
     urls:
     - eolo-planner-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-18T23:40:33.008767+02:00"
+generated: "2022-04-19T00:05:24.5362176+02:00"
